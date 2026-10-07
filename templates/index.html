@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Research Opportunity Portal</title>
+  <meta name="description" content="Centralized portal for university faculty to post, manage, and explore research opportunities for students.">
+  
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo-group" id="nav-logo">
+        <div class="logo-icon">🔬</div>
+        <div class="logo-text">
+          <h1>University Research Portal</h1>
+          <p>Faculty & Student Opportunities</p>
+        </div>
+      </a>
+      <div>
+        <button class="btn btn-primary" id="open-create-modal-btn">
+          <span>+</span> Post Opportunity
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-wrapper">
+
+    <!-- KPI / Statistics Banner -->
+    <section class="stats-grid" aria-label="Portal Statistics">
+      <div class="stat-card">
+        <div class="stat-icon total">📚</div>
+        <div class="stat-info">
+          <p>Total Opportunities</p>
+          <h3 id="total-count">0</h3>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon open">🟢</div>
+        <div class="stat-info">
+          <p>Open Positions</p>
+          <h3 id="open-count">0</h3>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon closed">⚪</div>
+        <div class="stat-info">
+          <p>Closed Positions</p>
+          <h3 id="closed-count">0</h3>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon positions">👥</div>
+        <div class="stat-info">
+          <p>Student Openings</p>
+          <h3 id="positions-count">0</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controls Toolbar (Search & Filter) -->
+    <section class="control-bar" aria-label="Filters and Search Controls">
+      <div class="search-filter-group">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search by title, faculty, area, or skills..." 
+            aria-label="Search opportunities"
+          >
+        </div>
+        <select id="status-filter" class="filter-select" aria-label="Filter by Status">
+          <option value="All">All Statuses</option>
+          <option value="Open">🟢 Open Only</option>
+          <option value="Closed">⚪ Closed Only</option>
+        </select>
+      </div>
+      <button class="btn btn-secondary" id="refresh-btn" title="Refresh List from API">
+        🔄 Refresh
+      </button>
+    </section>
+
+    <!-- Research Opportunities Grid -->
+    <section id="opportunities-list" class="cards-grid" aria-live="polite">
+      <!-- Cards rendered dynamically via app.js -->
+    </section>
+
+  </main>
+
+  <!-- Create / Edit Opportunity Modal -->
+  <div class="modal-backdrop" id="opp-modal" role="dialog" aria-modal="true" aria-labelledby="opp-modal-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="opp-modal-title">Post New Research Opportunity</h2>
+        <button class="modal-close-btn" id="close-opp-modal-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <form id="opp-form" novalidate>
+        <input type="hidden" id="opp-id">
+        <div class="modal-body">
+          
+          <div class="form-group">
+            <label class="form-label" for="opp-title">
+              Research Title <span class="required-star">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="opp-title" 
+              class="form-input" 
+              placeholder="e.g. Deep Learning for Medical Image Segmentation" 
+              required
+            >
+            <span class="error-message" id="title-error"></span>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="opp-faculty">
+                Faculty Member Name <span class="required-star">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="opp-faculty" 
+                class="form-input" 
+                placeholder="e.g. Dr. Sarah Jenkins" 
+                required
+              >
+              <span class="error-message" id="faculty-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="opp-dept">
+                Department <span class="required-star">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="opp-dept" 
+                class="form-input" 
+                placeholder="e.g. Computer Science" 
+                required
+              >
+              <span class="error-message" id="dept-error"></span>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="opp-area">
+                Research Area <span class="required-star">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="opp-area" 
+                class="form-input" 
+                placeholder="e.g. Artificial Intelligence, NLP, Robotics" 
+                required
+              >
+              <span class="error-message" id="area-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="opp-positions">
+                Available Positions <span class="required-star">*</span>
+              </label>
+              <input 
+                type="number" 
+                id="opp-positions" 
+                class="form-input" 
+                min="1" 
+                placeholder="e.g. 2" 
+                required
+              >
+              <span class="error-message" id="positions-error"></span>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="opp-deadline">
+                Application Deadline <span class="required-star">*</span>
+              </label>
+              <input 
+                type="date" 
+                id="opp-deadline" 
+                class="form-input" 
+                required
+              >
+              <span class="error-message" id="deadline-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="opp-status">
+                Opportunity Status <span class="required-star">*</span>
+              </label>
+              <select id="opp-status" class="form-select" required>
+                <option value="Open">🟢 Open (Accepting Applications)</option>
+                <option value="Closed">⚪ Closed (Positions Filled)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="opp-skills">
+              Required Skills / Prerequisites <span class="required-star">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="opp-skills" 
+              class="form-input" 
+              placeholder="e.g. Python, PyTorch, Data Analysis, Git (comma separated)" 
+              required
+            >
+            <span class="form-hint">Separate multiple skills with commas</span>
+            <span class="error-message" id="skills-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="opp-description">
+              Research Description <span class="required-star">*</span>
+            </label>
+            <textarea 
+              id="opp-description" 
+              class="form-textarea" 
+              rows="4" 
+              placeholder="Describe the research project objectives, student expectations, and benefits..." 
+              required
+            ></textarea>
+            <span class="error-message" id="description-error"></span>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancel-opp-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="submit-opp-btn">Save Opportunity</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Details Modal -->
+  <div class="modal-backdrop" id="details-modal" role="dialog" aria-modal="true" aria-label="Opportunity Details">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Opportunity Details</h2>
+        <button class="modal-close-btn" id="close-details-modal-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body" id="details-content">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal-backdrop" id="delete-modal" role="dialog" aria-modal="true" aria-label="Confirm Delete">
+    <div class="modal-content" style="max-width: 460px;">
+      <div class="modal-header">
+        <h2 class="modal-title" style="color: var(--danger);">⚠️ Confirm Delete</h2>
+        <button class="modal-close-btn" id="close-delete-modal-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to permanently delete this research opportunity?</p>
+        <p style="font-weight: 600; color: var(--text-main); margin-top: 0.5rem;" id="delete-opp-title"></p>
+        <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.5rem;">This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="cancel-delete-btn">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirm-delete-btn">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notifications Container -->
+  <div id="toast-container" aria-live="assertive"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; University Research Opportunity Portal &bull; Department of Software Engineering</p>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
