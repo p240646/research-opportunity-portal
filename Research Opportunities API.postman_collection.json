@@ -1,0 +1,251 @@
+{
+  "info": {
+    "_postman_id": "95680046-af81-43bf-9064-65eaaec425ce",
+    "name": "Research Opportunities API",
+    "description": "Postman Collection for Assignment 1 - University Research Opportunity Portal",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Opportunity 1 (POST)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_title\": \"Deep Learning for Cancer Detection\",\n  \"research_description\": \"Investigating neural networks for early diagnosis in medical scans.\",\n  \"research_area\": \"Biomedical AI\",\n  \"faculty_name\": \"Dr. Sarah Jenkins\",\n  \"department\": \"Computer Science\",\n  \"required_skills\": \"Python, PyTorch, Medical Imaging\",\n  \"available_positions\": 2,\n  \"application_deadline\": \"2026-11-30\",\n  \"status\": \"Open\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/opportunities",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["api", "opportunities"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Create Opportunity 2 (POST)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_title\": \"Smart Grid Energy Optimization\",\n  \"research_description\": \"Developing distributed consensus algorithms for microgrid energy management.\",\n  \"research_area\": \"IoT & Energy Systems\",\n  \"faculty_name\": \"Prof. Marcus Chen\",\n  \"department\": \"Electrical Engineering\",\n  \"required_skills\": \"C++, IoT, MATLAB\",\n  \"available_positions\": 3,\n  \"application_deadline\": \"2026-10-15\",\n  \"status\": \"Open\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/opportunities",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["api", "opportunities"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Create Opportunity 3 (POST)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_title\": \"Autonomous Robotics Navigation\",\n  \"research_description\": \"Implementing SLAM and obstacle avoidance in unknown environments.\",\n  \"research_area\": \"Robotics & AI\",\n  \"faculty_name\": \"Dr. Robert Miller\",\n  \"department\": \"Computer Science\",\n  \"required_skills\": \"Python, ROS, Computer Vision\",\n  \"available_positions\": 1,\n  \"application_deadline\": \"2026-12-01\",\n  \"status\": \"Open\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/opportunities",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["api", "opportunities"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Retrieve All Research Opportunities (GET)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/opportunities",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["api", "opportunities"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Retrieve One Opportunity by ID (GET)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/opportunities/1",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["api", "opportunities", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Update Opportunity Details (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_title\": \"Deep Learning for Cancer Detection (Updated)\",\n  \"available_positions\": 4,\n  \"required_skills\": \"Python, PyTorch, TorchVision, Medical Imaging\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/opportunities/1",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["api", "opportunities", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. Change Status from Open to Closed (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Closed\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/opportunities/1",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["api", "opportunities", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8. Delete Opportunity (DELETE)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/opportunities/1",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["api", "opportunities", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "9. Request Deleted Opportunity - 404 Demo (GET)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/opportunities/1",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["api", "opportunities", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10. Invalid Data Request - 400 Demo (POST)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_title\": \"Incomplete Opportunity\",\n  \"status\": \"InvalidStatus\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/api/opportunities",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["api", "opportunities"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:5000",
+      "type": "default"
+    }
+  ]
+}
