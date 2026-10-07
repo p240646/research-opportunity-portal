@@ -6,8 +6,8 @@ Assignment No. 1
 - Class: BS (CS 5B)
 - University: National University of Computer & Emerging Sciences (FAST-NUCES), Peshawar Campus
 - Student Name: Talha Az
-- Reg. No: [Your Registration Number Here]
-- GitHub Repository: https://github.com/username/research-opportunity-portal
+- Reg. No: P24-0646
+- GitHub Repository: https://github.com/p240646/research-opportunity-portal
 
 ---
 
