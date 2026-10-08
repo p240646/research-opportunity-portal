@@ -5,7 +5,7 @@ Assignment No. 1
 - Course: Computer Networks (CN)
 - Class: BS (CS 5B)
 - University: National University of Computer & Emerging Sciences (FAST-NUCES), Peshawar Campus
-- Student Name: Talha Az
+- Student Name: Talha Shahid
 - Reg. No: P24-0646
 - GitHub Repository: https://github.com/p240646/research-opportunity-portal
 
